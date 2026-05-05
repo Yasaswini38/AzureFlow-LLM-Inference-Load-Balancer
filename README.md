@@ -11,6 +11,8 @@ In a production AI environment, you never send a user's request directly to a si
 *   **Resource Bottlenecks**: It addresses **Load Imbalance** by simulating a "Least-Connections" routing strategy, ensuring no single replica is overwhelmed while others are idle.
 
 ---
+<img width="1919" height="814" src="assets/Screenshot 2026-05-05 211304.png" />
+<img width="1919" height="814" src="assets/Screenshot 2026-05-05 211321.png" />
 
 ### Module Breakdown
 
