@@ -45,10 +45,8 @@ In a production AI environment, you never send a user's request directly to a si
 
 3. **Start the server:**
 ```bash 
-uicorn app:app --reload```
----
-
-
+uicorn app:app --reload
+```
 
 **Developed by Yasaswini Padamati**  
 *Technical Professional | AI Engineering Enthusiast*
