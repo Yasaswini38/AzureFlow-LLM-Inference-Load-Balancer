@@ -1,0 +1,35 @@
+:root {
+    --bg: #0f172a;
+    --card: #1e293b;
+    --text: #f8fafc;
+    --text-dim: #94a3b8;
+    --azure: #0078d4;
+}
+
+body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 30px; margin: 0; }
+.root { max-width: 1100px; margin: 0 auto; }
+
+.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
+.brand { display: flex; align-items: center; gap: 12px; }
+.brand-icon { background: var(--azure); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
+.brand-icon svg { width: 20px; fill: white; }
+
+.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 2rem; }
+.metric { background: var(--card); padding: 20px; border-radius: 10px; border: 1px solid #334155; }
+.metric-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; }
+.metric-value { font-size: 28px; font-weight: bold; margin-top: 8px; }
+
+.nodes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
+.node { background: var(--card); padding: 18px; border-radius: 12px; border: 1.5px solid #334155; transition: 0.3s ease; }
+.node.hot { border-color: #ef4444; }
+.node.cool { border-color: #22c55e; }
+
+.bar-track { height: 6px; background: #0f172a; border-radius: 3px; margin: 15px 0; overflow: hidden; }
+.bar-fill { height: 100%; transition: width 0.8s ease-in-out; }
+.bar-green { background: #22c55e; }
+.bar-red { background: #ef4444; }
+
+.btn { padding: 12px 20px; border-radius: 8px; cursor: pointer; border: 1px solid #444; background: transparent; color: white; font-weight: 600; }
+.btn-primary { background: var(--azure); border: none; }
+.dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
+@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
