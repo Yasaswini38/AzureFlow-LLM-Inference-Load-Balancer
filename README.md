@@ -46,12 +46,9 @@ In a production AI environment, you never send a user's request directly to a si
 3. **Start the server:**
 ```bash 
 uicorn app:app --reload```
-4. **View the Dashboard:**
-Open your browser to `[http://127.0.0.1:8000](http://127.0.0.1:8000)`.
 ---
-### DeploymentThis project is optimized for deployment on *Render*, *Railway*, or *Hugging Face Spaces*. 
-*   ***Build Command***: `pip install -r requirements.txt`
-*   ***Start Command***: `uvicorn app:app --host 0.0.0.0 --port $PORT`
----
+
+
+
 **Developed by Yasaswini Padamati**  
 *Technical Professional | AI Engineering Enthusiast*
