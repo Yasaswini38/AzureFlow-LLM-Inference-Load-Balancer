@@ -1,35 +1,282 @@
+/* --- AZUREFLOW CORE THEME & VARIABLES --- */
 :root {
     --bg: #0f172a;
     --card: #1e293b;
     --text: #f8fafc;
     --text-dim: #94a3b8;
     --azure: #0078d4;
+    --font-mono: 'Segoe UI Mono', 'Cascadia Code', monospace;
 }
 
-body { background: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; padding: 30px; margin: 0; }
-.root { max-width: 1100px; margin: 0 auto; }
+body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding: 30px;
+    margin: 0;
+    line-height: 1.5;
+}
 
-.topbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 2.5rem; }
-.brand { display: flex; align-items: center; gap: 12px; }
-.brand-icon { background: var(--azure); width: 34px; height: 34px; border-radius: 6px; display: flex; align-items: center; justify-content: center; }
-.brand-icon svg { width: 20px; fill: white; }
+.root {
+    max-width: 1100px;
+    margin: 0 auto;
+}
 
-.metrics { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; margin-bottom: 2rem; }
-.metric { background: var(--card); padding: 20px; border-radius: 10px; border: 1px solid #334155; }
-.metric-label { font-size: 11px; color: var(--text-dim); text-transform: uppercase; letter-spacing: 0.8px; }
-.metric-value { font-size: 28px; font-weight: bold; margin-top: 8px; }
+/* --- TOPBAR & BRANDING --- */
+.topbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2.5rem;
+}
 
-.nodes-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 15px; }
-.node { background: var(--card); padding: 18px; border-radius: 12px; border: 1.5px solid #334155; transition: 0.3s ease; }
-.node.hot { border-color: #ef4444; }
-.node.cool { border-color: #22c55e; }
+.brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
 
-.bar-track { height: 6px; background: #0f172a; border-radius: 3px; margin: 15px 0; overflow: hidden; }
-.bar-fill { height: 100%; transition: width 0.8s ease-in-out; }
+.brand-icon {
+    background: var(--azure);
+    width: 34px;
+    height: 34px;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 15px rgba(0, 120, 212, 0.3);
+}
+
+.brand-name {
+    font-weight: bold;
+    font-size: 18px;
+    letter-spacing: -0.5px;
+}
+
+.status-pill {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(34, 197, 94, 0.1);
+    padding: 6px 12px;
+    border-radius: 20px;
+    font-size: 12px;
+    color: #22c55e;
+    border: 1px solid rgba(34, 197, 94, 0.2);
+}
+
+.dot {
+    width: 8px;
+    height: 8px;
+    background: #22c55e;
+    border-radius: 50%;
+    animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+    0% { transform: scale(0.95); opacity: 1; }
+    50% { transform: scale(1.1); opacity: 0.5; }
+    100% { transform: scale(0.95); opacity: 1; }
+}
+
+/* --- METRIC CARDS --- */
+.metrics {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.metric {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+}
+
+.metric-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+.metric-value {
+    font-size: 28px;
+    font-weight: bold;
+    margin-top: 8px;
+    font-family: var(--font-mono);
+}
+
+/* --- INFERENCE NODES GRID --- */
+.nodes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.node {
+    background: var(--card);
+    padding: 18px;
+    border-radius: 12px;
+    border: 1.5px solid #334155;
+    transition: all 0.3s ease;
+}
+
+/* Node Health States */
+.node.hot { 
+    border-color: #ef4444; 
+    box-shadow: 0 0 10px rgba(239, 68, 68, 0.1); 
+}
+.node.cool { 
+    border-color: #22c55e; 
+}
+
+.section-label {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin: 20px 0 12px 0;
+    display: block;
+    letter-spacing: 1px;
+}
+
+/* --- PROGRESS BARS --- */
+.bar-track {
+    height: 6px;
+    background: #0f172a;
+    border-radius: 3px;
+    margin: 15px 0;
+    overflow: hidden;
+}
+
+.bar-fill {
+    height: 100%;
+    transition: width 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
 .bar-green { background: #22c55e; }
 .bar-red { background: #ef4444; }
 
-.btn { padding: 12px 20px; border-radius: 8px; cursor: pointer; border: 1px solid #444; background: transparent; color: white; font-weight: 600; }
-.btn-primary { background: var(--azure); border: none; }
-.dot { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; animation: pulse 2s infinite; }
-@keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.2; } }
+/* --- THROUGHPUT GRAPH (NEW SECTION) --- */
+.throughput-row {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+    height: 70px;
+    background: #1e293b;
+    padding: 12px;
+    border-radius: 8px;
+    border: 0.5px solid #334155;
+    margin-bottom: 2rem;
+    overflow: hidden;
+}
+
+.tp-bar {
+    flex: 1;
+    background: var(--azure);
+    border-radius: 2px 2px 0 0;
+    transition: height 0.4s ease-out;
+    min-width: 6px;
+}
+
+/* --- BOTTOM ANALYTICS PANELS --- */
+.queue-section {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 2rem;
+}
+
+.panel {
+    background: var(--card);
+    padding: 20px;
+    border-radius: 10px;
+    border: 1px solid #334155;
+    height: 240px;
+    overflow: hidden;
+}
+
+.panel-title {
+    font-size: 11px;
+    color: var(--text-dim);
+    text-transform: uppercase;
+    margin-bottom: 15px;
+    border-bottom: 0.5px solid #334155;
+    padding-bottom: 8px;
+}
+
+/* --- REQUEST STREAM LIST (NEW SECTION) --- */
+.request-list {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.req {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #0f172a;
+    padding: 10px 14px;
+    border-radius: 6px;
+    font-size: 11px;
+    font-family: var(--font-mono);
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from { transform: translateY(-15px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.req-id { color: var(--text-dim); }
+.req-model { font-weight: bold; }
+
+/* Status Labels for Stream */
+.req-status {
+    padding: 2px 8px;
+    border-radius: 10px;
+    font-size: 9px;
+    text-transform: uppercase;
+    font-weight: 800;
+}
+
+.status-done { background: rgba(34, 197, 94, 0.2); color: #22c55e; }
+.status-processing { background: rgba(59, 130, 246, 0.2); color: #3b82f6; }
+.status-routing { background: rgba(245, 158, 11, 0.2); color: #f59e0b; }
+
+/* --- CONTROLS --- */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding-top: 10px;
+}
+
+.btn {
+    padding: 12px 20px;
+    border-radius: 8px;
+    cursor: pointer;
+    border: 1px solid #444;
+    background: transparent;
+    color: white;
+    font-weight: 600;
+    font-size: 12px;
+    transition: 0.2s;
+}
+
+.btn:hover { 
+    background: rgba(255, 255, 255, 0.05); 
+    border-color: #666; 
+}
+
+.btn-primary {
+    background: var(--azure);
+    border: none;
+}
+
+.btn-primary:hover {
+    background: #0086f1;
+}
