@@ -9,11 +9,8 @@
     <div class="root">
         <div class="topbar">
             <div class="brand">
-                <div class="brand-icon"><svg viewBox="0 0 16 16"><path d="M8 2L2 5v6l6 3 6-3V5L8 2zm0 1.5l4.5 2.25L8 8 3.5 5.75 8 3.5zM3 7l4.5 2.25v4.25L3 11.25V7zm5.5 6.5v-4.25L13 7v4.25L8.5 13.5z"/></svg></div>
-                <div>
-                    <div class="brand-name">AzureFlow</div>
-                    <div class="brand-sub">LLM Inference Load Balancer</div>
-                </div>
+                <div class="brand-icon"><svg width="18" fill="white" viewBox="0 0 16 16"><path d="M8 2L2 5v6l6 3 6-3V5L8 2z"/></svg></div>
+                <div class="brand-name">AzureFlow <span style="font-weight:normal; font-size:12px; color:#94a3b8">Inference Cloud</span></div>
             </div>
             <div class="status-pill"><div class="dot"></div><span>Live Telemetry</span></div>
         </div>
@@ -22,16 +19,31 @@
             <div class="metric"><div class="metric-label">Requests/sec</div><div id="rps" class="metric-value">0</div></div>
             <div class="metric"><div class="metric-label">Avg latency</div><div id="lat" class="metric-value">0ms</div></div>
             <div class="metric"><div class="metric-label">Queue depth</div><div id="queue" class="metric-value">0</div></div>
-            <div class="metric"><div class="metric-label">Success rate</div><div id="srate" class="metric-value">100%</div></div>
+            <div class="metric"><div class="metric-label">Success rate</div><div class="metric-value">100%</div></div>
         </div>
 
-        <div class="section-label">Inference Cluster — Replica Status</div>
+        <div class="section-label">Inference nodes — 6 replicas</div>
         <div class="nodes-grid" id="nodes-grid"></div>
 
+        <div class="section-label">Throughput (last 20s)</div>
+        <div class="throughput-row" id="tp-row"></div>
+
+        <div class="queue-section">
+            <div class="panel">
+                <div class="panel-title">Request stream</div>
+                <div class="request-list" id="req-list"></div>
+            </div>
+            <div class="panel">
+                <div class="panel-title">P50 / P95 / P99 latency by model</div>
+                <div class="latency-bars" id="lat-bars"></div>
+            </div>
+        </div>
+
         <div class="controls">
-            <button class="btn btn-primary" onclick="killNode()">Chaos: Kill Random Node</button>
-            <button class="btn" onclick="restoreNodes()">Heal Cluster</button>
-            <span id="log-msg" style="font-size: 11px; color: #94a3b8; margin-left: 15px;"></span>
+            <button class="btn btn-primary" onclick="addSpike()">Inject Traffic Spike</button>
+            <button class="btn" onclick="killNode()">Chaos: Kill Node</button>
+            <button class="btn" onclick="healNodes()">Heal Cluster</button>
+            <span id="sim-note" style="font-size:11px; color:#94a3b8; margin-left:10px;"></span>
         </div>
     </div>
     <script src="/static/script.js"></script>
